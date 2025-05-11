@@ -5,6 +5,10 @@ on:
   push:
     branches: [ origin ]
 
+permissions:
+  actions: read
+  contents: read
+  security-events: write  #Required for upload-sarif
 
 jobs:
   snyk:
