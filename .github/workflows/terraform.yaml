@@ -19,7 +19,7 @@ jobs:
       uses: actions/checkout@v4
 
     #synk installation
-    - name: Install Snyk CLI
+    - name: "Install Snyk CLI"
       run: npm install -g snyk
 
     #snyk iac 
