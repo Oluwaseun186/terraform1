@@ -18,16 +18,28 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v4
 
+    #synk installation
     - name: Install Snyk CLI
       run: npm install -g snyk
 
+    #snyk iac 
     - name: Run Snyk IaC Scan
       env:
         SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
       run: |
        snyk iac test --severity-threshold=medium
        snyk iac monitor
+    
+    #code scanning enable in github security
+    - name: Initialize CodeQL
+      uses: github/codeql-action/init@v3
+      with:
+          languages: javascript  # or 'python', 'terraform', etc.
 
+    - name: Perform CodeQL Analysis
+      uses: github/codeql-action/analyze@v3
+
+    #snyk sarif
     - name: Run Snyk IaC Test with SARIF Output
       env:
         SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
