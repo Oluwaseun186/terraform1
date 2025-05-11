@@ -18,7 +18,7 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v4
 
-    #synk installation
+    #synk installation line
     - name: "Install Snyk CLI"
       run: npm install -g snyk
 
