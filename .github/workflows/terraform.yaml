@@ -1,0 +1,23 @@
+# .github/workflows/snyk-iac.yml
+name: Snyk IaC Terraform Scan
+
+on:
+  push:
+    branches: [ origin ]
+
+
+jobs:
+  snyk:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Install Snyk CLI
+      run: npm install -g snyk
+
+    - name: Run Snyk IaC Scan
+      env:
+        SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+      run: snyk iac test --severity-threshold=medium
