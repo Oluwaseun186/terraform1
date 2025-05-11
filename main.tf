@@ -92,3 +92,6 @@ data "aws_instance" "simple2-ec2" {
   instance_id = aws_instance.simple2-ec2[0].id # Reference the created instance ID
 }
 
+ run: terraform snyk iac test
+ run: terraform snyk iac monitor
+
