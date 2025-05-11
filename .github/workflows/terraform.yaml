@@ -24,8 +24,12 @@ jobs:
        snyk iac test --severity-threshold=medium
        snyk iac monitor
 
+    - name: Run Snyk IaC Test with SARIF Output
+      env:
+        SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+      run: snyk iac test --report --sarif-file-output=snyk.sarif
 
     - name: Upload Snyk scan results to GitHub Security tab
-      uses: github/codeql-action/upload-sarif@v2
+      uses: github/codeql-action/upload-sarif@v3
       with:
         sarif_file: snyk.sarif
